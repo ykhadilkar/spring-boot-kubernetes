@@ -19,6 +19,7 @@ public class BootBackendApplication {
 
 	@GetMapping("")
 	public String getHost() throws UnknownHostException {
-		return "Hello from : "+ InetAddress.getLocalHost().getHostName();
+		return "Hello from : "+ InetAddress.getLocalHost().getHostName() +
+				" & Ip Address: " + InetAddress.getLocalHost().getHostAddress();
 	}
 }

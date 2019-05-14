@@ -1,0 +1,33 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: boot-frontend
+spec:
+  selector:
+    app: boot-frontend
+  ports:
+    - protocol: TCP
+      port: 8081
+      nodePort: 30001
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boot-frontend
+spec:
+  selector:
+    matchLabels:
+      app: boot-frontend
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: boot-frontend
+    spec:
+      containers:
+        - name: boot-frontend
+          image: boot-frontend:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081

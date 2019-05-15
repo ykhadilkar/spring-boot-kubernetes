@@ -20,5 +20,7 @@ jobs:
       - task: build
         file: spring-boot-kubernetes/boot-backend/src/main/ci/build.yaml
       - put: boot-backend-image
+        inputs:
+          - name: target
         params:
           build: spring-boot-kubernetes/boot-backend

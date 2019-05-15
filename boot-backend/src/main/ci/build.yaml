@@ -9,5 +9,11 @@ image_resource:
 inputs:
   - name: spring-boot-kubernetes
 
+outputs:
+  - name: target
+
+caches:
+  - path: .m2
+
 run:
   path: spring-boot-kubernetes/boot-backend/src/main/ci/build.sh

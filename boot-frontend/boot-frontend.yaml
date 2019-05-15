@@ -28,6 +28,6 @@ spec:
       containers:
         - name: boot-frontend
           image: boot-frontend:latest
-          imagePullPolicy: Never
+          imagePullPolicy: Always
           ports:
             - containerPort: 8081

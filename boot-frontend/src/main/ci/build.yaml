@@ -1,0 +1,16 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: springio/spring-ci-base
+
+inputs:
+  - name: spring-boot-kubernetes
+
+caches:
+  - path: .m2
+
+run:
+  path: spring-boot-kubernetes/boot-frontend/src/main/ci/build.sh

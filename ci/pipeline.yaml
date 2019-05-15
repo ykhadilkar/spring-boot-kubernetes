@@ -1,0 +1,87 @@
+resource_types:
+  - name: kubernetes
+    type: docker-image
+    source:
+      repository: zlabjp/kubernetes-resource
+      tag: "1.14"
+
+resources:
+  - name: spring-boot-kubernetes
+    type: git
+    icon: github-circle
+    source:
+      uri: https://github.com/ykhadilkar/spring-boot-kubernetes.git
+
+  - name: boot-frontend-image
+    type: docker-image
+    icon: docker
+    source:
+      email: ((docker-hub-email))
+      username: ((docker-hub-username))
+      password: ((docker-hub-password))
+      repository: ((docker-hub-username))/boot-frontend
+
+  - name: boot-backend-image
+    type: docker-image
+    icon: docker
+    source:
+      email: ((docker-hub-email))
+      username: ((docker-hub-username))
+      password: ((docker-hub-password))
+      repository: ((docker-hub-username))/boot-backend
+
+  - name: kubernetes-lab
+    type: kubernetes
+    icon:
+    source:
+      server: https://cluster0.pks.lab.khadilkar.net:8443
+      namespace: default
+      insecure_skip_tls_verify: true
+      token: ((kubernetes-lab-token))
+
+jobs:
+  - name: backend-publish
+    public: true
+    serial: true
+    plan:
+      - get: spring-boot-kubernetes
+        trigger: true
+      - task: build
+        file: spring-boot-kubernetes/boot-backend/src/main/ci/build.yaml
+      - put: boot-backend-image
+        params:
+          build: spring-boot-kubernetes/boot-backend
+
+  - name: frontend-publish
+    public: true
+    serial: true
+    plan:
+      - get: spring-boot-kubernetes
+        trigger: true
+      - task: build
+        file: spring-boot-kubernetes/boot-frontend/src/main/ci/build.yaml
+      - put: boot-frontend-image
+        params:
+          build: spring-boot-kubernetes/boot-frontend
+
+  - name: kubernetes-backend-deploy-lab
+    plan:
+      - get: spring-boot-kubernetes
+        trigger: true
+        passed: [backend-publish]
+      - put: kubernetes-lab
+        params:
+          kubectl: apply -f spring-boot-kubernetes/boot-backend/boot-backend.yaml
+          wait_until_ready: 120
+          wait_until_ready_selector: app=boot-backend
+
+  - name: kubernetes-frontend-deploy-lab
+    plan:
+      - get: spring-boot-kubernetes
+        trigger: true
+        passed: [kubernetes-backend-deploy-lab, frontend-publish]
+      - put: kubernetes-lab
+        params:
+          kubectl: apply -f spring-boot-kubernetes/boot-frontend/boot-frontend.yaml
+          wait_until_ready: 120
+          wait_until_ready_selector: app=boot-frontend

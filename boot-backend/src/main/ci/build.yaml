@@ -7,7 +7,7 @@ image_resource:
     repository: spring-boot-kubernetes/boot-backend
 
 inputs:
-  - name: spring-boot
+  - name: spring-boot-kubernetes
 
 run:
   path: spring-boot-kubernetes/boot-backend/src/main/ci/build.sh

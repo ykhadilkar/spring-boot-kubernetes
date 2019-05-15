@@ -1,4 +1,4 @@
 #!/bin/sh
 set -e
-cd boot-backend
+cd spring-boot-kubernetes/boot-backend
 ./mvnw clean install

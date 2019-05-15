@@ -1,0 +1,24 @@
+resources:
+  - name: spring-boot-kubernetes
+    type: git
+    source:
+      uri: https://github.com/ykhadilkar/spring-boot-kubernetes.git
+  - name: boot-backend-image
+    type: docker-image
+    source:
+      email: ((docker-hub-email))
+      username: ((docker-hub-username))
+      password: ((docker-hub-password))
+      repository: ykhadilkar/boot-backend
+
+jobs:
+  - name: publish
+    public: true
+    serial: true
+    plan:
+      - get: spring-boot-kubernetes
+      - task: build
+          file: spring-boot-kubernetes/boot-backend/src/main/ci/build.yaml
+      - put: boot-backend-image
+        params:
+          build: spring-boot-kubernetes/boot-backend

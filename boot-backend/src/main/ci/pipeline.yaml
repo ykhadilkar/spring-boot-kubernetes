@@ -1,3 +1,10 @@
+resource_types:
+  - name: kubernetes
+    type: docker-image
+    source:
+      repository: zlabjp/kubernetes-resource
+      tag: "1.14"
+
 resources:
   - name: spring-boot-kubernetes
     type: git
@@ -10,6 +17,13 @@ resources:
       username: ((docker-hub-username))
       password: ((docker-hub-password))
       repository: ((docker-hub-username))/boot-backend
+  - name: kubernetes-lab
+    type: kubernetes
+    source:
+      server: https://cluster0.pks.lab.khadilkar.net:8443
+      namespace: default
+      insecure_skip_tls_verify: true
+      token: ((kubernetes-lab-token))
 
 jobs:
   - name: publish
@@ -22,3 +36,12 @@ jobs:
       - put: boot-backend-image
         params:
           build: spring-boot-kubernetes/boot-backend
+  - name: kubernetes-deploy-lab
+    plan:
+      - get: boot-backend-image
+        trigger: true
+        passed: [publish]
+      - put: kubernetes-lab
+        params:
+          kubectl: apply -f spring-boot-kubernetes/boot-backend/boot-backend.yaml
+          wait_until_ready_selector: app=boot-backend

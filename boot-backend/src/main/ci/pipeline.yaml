@@ -38,6 +38,7 @@ jobs:
           build: spring-boot-kubernetes/boot-backend
   - name: kubernetes-deploy-lab
     plan:
+      - get: spring-boot-kubernetes
       - get: boot-backend-image
         trigger: true
         passed: [publish]

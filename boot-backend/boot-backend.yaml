@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: boot-backend
-          image: boot-backend:latest
+          image: ykhadilkar/boot-backend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

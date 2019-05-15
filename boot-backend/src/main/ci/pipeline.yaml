@@ -8,10 +8,12 @@ resource_types:
 resources:
   - name: spring-boot-kubernetes
     type: git
+    icon: github-circle
     source:
       uri: https://github.com/ykhadilkar/spring-boot-kubernetes.git
   - name: boot-backend-image
     type: docker-image
+    icon: docker
     source:
       email: ((docker-hub-email))
       username: ((docker-hub-username))
@@ -19,6 +21,7 @@ resources:
       repository: ((docker-hub-username))/boot-backend
   - name: kubernetes-lab
     type: kubernetes
+    icon:
     source:
       server: https://cluster0.pks.lab.khadilkar.net:8443
       namespace: default
@@ -31,6 +34,7 @@ jobs:
     serial: true
     plan:
       - get: spring-boot-kubernetes
+        trigger: true
       - task: build
         file: spring-boot-kubernetes/boot-backend/src/main/ci/build.yaml
       - put: boot-backend-image
@@ -45,4 +49,5 @@ jobs:
       - put: kubernetes-lab
         params:
           kubectl: apply -f spring-boot-kubernetes/boot-backend/boot-backend.yaml
+          wait_until_ready: 120
           wait_until_ready_selector: app=boot-backend

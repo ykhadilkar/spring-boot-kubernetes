@@ -1,5 +1,5 @@
 resources:
-  - name: boot-backend
+  - name: spring-boot-kubernetes
     type: git
     source:
       uri: https://github.com/ykhadilkar/spring-boot-kubernetes.git

@@ -14,9 +14,9 @@ resources:
 jobs:
   - name: main
     plan:
-      - get: boot-backend
+      - get: spring-boot-kubernetes
       - task: build
-        file: spring-boot-kubernetes/boot-backend/src/main/ci/build.yml
+        file: spring-boot-kubernetes/boot-backend/src/main/ci/build.yaml
       - put: boot-backend-image
         params:
           build: boot-backend

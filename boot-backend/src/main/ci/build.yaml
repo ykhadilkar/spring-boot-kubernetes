@@ -19,4 +19,4 @@ jobs:
         file: spring-boot-kubernetes/boot-backend/src/main/ci/build.yaml
       - put: boot-backend-image
         params:
-          build: boot-backend
+          build: spring-boot-kubernetes/boot-backend

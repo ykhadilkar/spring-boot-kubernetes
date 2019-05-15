@@ -6,9 +6,9 @@ resources:
   - name: boot-backend-image
     type: docker-image
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-username}}
-      password: {{docker-hub-password}}
+      email: ((docker-hub-email))
+      username: ((docker-hub-username))
+      password: ((docker-hub-password))
       repository: ykhadilkar/boot-backend
 
 jobs:

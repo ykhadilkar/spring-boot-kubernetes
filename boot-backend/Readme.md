@@ -24,9 +24,13 @@
     docker-hub-username: <docker-hub-username>
     docker-hub-password: <docker-hub-password>
     ```
-4. Create concourse pipeline by running following command
+4. If deploying on PKS udpate credential.yaml file with user token
+    ```bash
+    kubernetes-lab-token: <token>
+    ```
+5. Create concourse pipeline by running following command
    ```bash
    fly -t tutorial sp -c spring-boot-kubernetes/boot-backend/src/main/ci/pipeline.yaml -p boot-backend -l spring-boot-kubernetes/boot-backend/src/main/ci/credentials.yaml
    ```
-5. Start the pipeline by clicking **+** sign
-6. Login to Docker Hub to verify new docker image is available. 
+6. Start the pipeline by clicking **+** sign
+7. Login to Docker Hub to verify new docker image is available. 

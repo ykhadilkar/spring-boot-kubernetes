@@ -15,10 +15,10 @@ resources:
     type: docker-image
     icon: docker
     source:
-      email: ((docker-hub-email))
-      username: ((docker-hub-username))
-      password: ((docker-hub-password))
-      repository: ((docker-hub-username))/boot-backend
+      email: ((registry-email))
+      username: ((registry-username))
+      password: ((registry-password))
+      repository: ((registry-url))/boot-backend
   - name: kubernetes-lab
     type: kubernetes
     icon:

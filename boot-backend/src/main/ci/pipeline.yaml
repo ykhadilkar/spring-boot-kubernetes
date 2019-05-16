@@ -11,6 +11,7 @@ resources:
     icon: github-circle
     source:
       uri: https://github.com/ykhadilkar/spring-boot-kubernetes.git
+
   - name: boot-backend-image
     type: docker-image
     icon: docker
@@ -19,6 +20,8 @@ resources:
       username: ((registry-username))
       password: ((registry-password))
       repository: ((registry-url))/boot-backend
+      insecure_registries: [harbor.lab.khadilkar.net:443]
+
   - name: kubernetes-lab
     type: kubernetes
     icon:

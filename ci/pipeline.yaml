@@ -12,23 +12,42 @@ resources:
     source:
       uri: https://github.com/ykhadilkar/spring-boot-kubernetes.git
 
+#  - name: boot-frontend-image
+#    type: docker-image
+#    icon: docker
+#    source:
+#      email: ((docker-hub-email))
+#      username: ((docker-hub-username))
+#      password: ((docker-hub-password))
+#      repository: ((docker-hub-username))/boot-frontend
+#
+#  - name: boot-backend-image
+#    type: docker-image
+#    icon: docker
+#    source:
+#      email: ((docker-hub-email))
+#      username: ((docker-hub-username))
+#      password: ((docker-hub-password))
+#      repository: ((docker-hub-username))/boot-backend
   - name: boot-frontend-image
     type: docker-image
     icon: docker
     source:
-      email: ((docker-hub-email))
-      username: ((docker-hub-username))
-      password: ((docker-hub-password))
-      repository: ((docker-hub-username))/boot-frontend
+      email: ((registry-email))
+      username: ((registry-username))
+      password: ((registry-password))
+      repository: ((registry-url))/boot-frontend
+      insecure_registries: [harbor.lab.khadilkar.net:443]
 
   - name: boot-backend-image
     type: docker-image
     icon: docker
     source:
-      email: ((docker-hub-email))
-      username: ((docker-hub-username))
-      password: ((docker-hub-password))
-      repository: ((docker-hub-username))/boot-backend
+      email: ((registry-email))
+      username: ((registry-username))
+      password: ((registry-password))
+      repository: ((registry-url))/boot-backend
+      insecure_registries: [harbor.lab.khadilkar.net:443]
 
   - name: kubernetes-lab
     type: kubernetes

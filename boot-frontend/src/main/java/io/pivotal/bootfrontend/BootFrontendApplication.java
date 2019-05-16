@@ -25,7 +25,7 @@ public class BootFrontendApplication {
 		ResponseEntity<String> response = restTemplate.getForEntity(resourceUrl, String.class);
 		return "This is a <b>frontend</b> service. I am running on " + InetAddress.getLocalHost().getHostName() +
 				" & my Ip Address is: " + InetAddress.getLocalHost().getHostAddress() +
-				"Message from backend is: " + response.getBody();
+				"<br> Message from backend is: " + response.getBody();
 	}
 
 }

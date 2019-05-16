@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: boot-frontend
-          image: ykhadilkar/boot-backend:latest
+          image: ykhadilkar/boot-frontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8081

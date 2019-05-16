@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: boot-frontend
-          image: ykhadilkar/boot-frontend:latest
+          image: harbor.lab.khadilkar.net:443/ykhadilkar/boot-frontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8081

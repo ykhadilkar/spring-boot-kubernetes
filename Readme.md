@@ -41,7 +41,6 @@ There are 3 Concourse pipelines in this repo. Follow below instructions to run f
 2. `kubectl delete deployment boot-frontend`
 
 
-
 Instructions to build and deploy
 - [Backend](boot-backend/Readme.md)
 - [Frontend](boot-frontend/Readme.md)

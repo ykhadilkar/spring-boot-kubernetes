@@ -52,5 +52,3 @@ Instructions to build and deploy Backend and Frontend pipelines
 ###### Clean Up
 1. `kubectl delete service boot-frontend`
 2. `kubectl delete deployment boot-frontend`
-
-

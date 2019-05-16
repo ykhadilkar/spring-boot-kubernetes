@@ -29,7 +29,7 @@ There are 3 Concourse pipelines in this repo. Follow below instructions to run f
     ```
 5. Create concourse pipeline by running following command
    ```bash
-   fly -t tutorial sp -c spring-boot-kubernetes/boot-backend/src/main/ci/pipeline.yaml -p boot-backend -l spring-boot-kubernetes/boot-backend/src/main/ci/credentials.yaml
+   fly -t tutorial sp -c ci/pipeline.yaml -p boot-backend -l ci/credentials.yaml
    ```
 6. Login to concourse ui and unpause front-end pipeline.
 7. Pipeline triggered by either manual action by pressing **+** sign on concourse UI or by git commit.

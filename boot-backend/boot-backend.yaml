@@ -29,7 +29,8 @@ spec:
     spec:
       containers:
         - name: boot-backend
-          image: harbor.lab.khadilkar.net:443/ykhadilkar/boot-backend:latest
+#          image: harbor.lab.khadilkar.net:443/ykhadilkar/boot-backend:latest
+          image: harbor.haas-228.pez.pivotal.io:443/ykhadilkar/boot-backend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

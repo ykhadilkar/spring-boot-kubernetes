@@ -14,27 +14,32 @@ There are 3 Concourse pipelines in this repo. Follow below instructions to run f
 
 ##### Concourse Set Up
 
-1. Download Concourse docker-compose file. `wget https://concourse-ci.org/docker-compose.yml`
-2. Update `docker-compose.yml` file. Update `image: concourse/concourse` to `image: concourse/concourse-rc`
-3. Create credentials.yaml file with following contents. Do **NOT** commit this file to git.
+- Download Concourse docker-compose file. `wget https://concourse-ci.org/docker-compose.yml`
+- Update `docker-compose.yml` file. Update `image: concourse/concourse` to `image: concourse/concourse-rc`
+- Start Docker locally
+- Start concourse locally `docker-compose up -d`
+- Next download Fly cli and login `fly -t tutorial login -c http://localhost:8080`
+- Create credentials.yaml file with following contents. Do **NOT** commit this file to git.
    ```yaml
     registry-email: <email>
     registry-username: <username>
     registry-password: <password>
     registry-url: <registry-url>
     ```
-4. If deploying on PKS udpate credential.yaml file with user token
+- If deploying on PKS udpate credential.yaml file with user token
     ```yaml
     kubernetes-lab-token: <token>
     ```
-5. Create concourse pipeline by running following command
+- Create concourse pipeline by running following command
    ```bash
-   fly -t tutorial sp -c ci/pipeline.yaml -p boot-backend -l ci/credentials.yaml
+   fly -t tutorial sp -c ci/pipeline.yaml -p boot-on-k8s -l ci/credentials.yaml
    ```
-6. Login to concourse ui and unpause front-end pipeline.
-7. Pipeline triggered by either manual action by pressing **+** sign on concourse UI or by git commit.
-8. You can monitor pipeline run by login into conourse ui. 
-9. Once pipeline run completes, Login to Kubrnetes and Docker Hub to verify the deployment.
+  
+- Login to concourse ui by going to http://localhost:8080  
+- Unpause front-end pipeline from UI or by running command `fly -t tutorial up -p boot-on-k8s`
+- Pipeline triggered by either manual action by pressing **+** sign on concourse UI or by git commit.
+- You can monitor pipeline run by login into conourse ui. 
+- Once pipeline run completes, Login to Kubrnetes and Docker Hub to verify the deployment.
 
 Instructions to build and deploy Backend and Frontend pipelines
 - [Backend](boot-backend/Readme.md)
@@ -52,5 +57,5 @@ Instructions to build and deploy Backend and Frontend pipelines
 ###### Clean Up
 1. `kubectl delete service boot-frontend`
 2. `kubectl delete deployment boot-frontend`
-
+3. `fly -t tutorial dp -p boot-on-k8s`
 

@@ -36,7 +36,7 @@ resources:
       username: ((registry-username))
       password: ((registry-password))
       repository: ((registry-url))/boot-frontend
-      insecure_registries: [harbor.lab.khadilkar.net:443]
+      insecure_registries: [((registry-url)):443]
 
   - name: boot-backend-image
     type: docker-image
@@ -45,14 +45,14 @@ resources:
       email: ((registry-email))
       username: ((registry-username))
       password: ((registry-password))
-      repository: ((registry-url))/boot-backend
-      insecure_registries: [harbor.lab.khadilkar.net:443]
+      repository: ((registry-url))/ykhadilkar/boot-backend
+      insecure_registries: [((registry-url)):443]
 
   - name: kubernetes-lab
     type: kubernetes
     icon:
     source:
-      server: https://cluster0.pks.lab.khadilkar.net:8443
+      server: ((pks-cluster-url))
       namespace: default
       insecure_skip_tls_verify: true
       token: ((kubernetes-lab-token))

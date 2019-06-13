@@ -55,7 +55,11 @@ Instructions to build and deploy Backend and Frontend pipelines
 - In your browser goto http://<node-id>:<service-port> to access the service.
 
 ###### Clean Up
-1. `kubectl delete service boot-frontend`
-2. `kubectl delete deployment boot-frontend`
-3. `fly -t tutorial dp -p boot-on-k8s`
+- `kubectl delete service boot-frontend`
+- `kubectl delete service boot-backend`
+- `kubectl delete deployment boot-frontend`
+- `kubectl delete deployment boot-backend`
+- `fly -t tutorial dp -p boot-on-k8s`
+- `docker-compose down`
+- Delete images from Harbor
 

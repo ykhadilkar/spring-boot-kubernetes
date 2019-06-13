@@ -62,4 +62,3 @@ Instructions to build and deploy Backend and Frontend pipelines
 - `fly -t tutorial dp -p boot-on-k8s`
 - `docker-compose down`
 - Delete images from Harbor
-

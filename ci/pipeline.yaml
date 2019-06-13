@@ -12,23 +12,6 @@ resources:
     source:
       uri: https://github.com/ykhadilkar/spring-boot-kubernetes.git
 
-#  - name: boot-frontend-image
-#    type: docker-image
-#    icon: docker
-#    source:
-#      email: ((docker-hub-email))
-#      username: ((docker-hub-username))
-#      password: ((docker-hub-password))
-#      repository: ((docker-hub-username))/boot-frontend
-#
-#  - name: boot-backend-image
-#    type: docker-image
-#    icon: docker
-#    source:
-#      email: ((docker-hub-email))
-#      username: ((docker-hub-username))
-#      password: ((docker-hub-password))
-#      repository: ((docker-hub-username))/boot-backend
   - name: boot-frontend-image
     type: docker-image
     icon: docker
